@@ -13,7 +13,7 @@ local lib = mods['adamant-Modpack_Lib']
 config = chalk.auto('config.lua')
 public.config = config
 
-local backup, restore = lib.createBackupSystem()
+local backup, revert = lib.createBackupSystem()
 
 -- =============================================================================
 -- MODULE DEFINITION
@@ -264,8 +264,8 @@ end
 -- PUBLIC API
 -- =============================================================================
 
-public.definition.enable = apply
-public.definition.disable = restore
+public.definition.apply = apply
+public.definition.revert = revert
 
 public.getRealTime = function()
     if activeTimer then return FormatTimestamp(activeTimer:getRealTime()) end
@@ -296,5 +296,5 @@ modutil.once_loaded.game(function()
     end)
 end)
 
-local uiCallback = lib.standaloneUI(public.definition, config, apply, restore)
+local uiCallback = lib.standaloneUI(public.definition, config, apply, revert)
 rom.gui.add_to_menu_bar(uiCallback)
