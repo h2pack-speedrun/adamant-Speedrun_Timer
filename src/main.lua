@@ -13,7 +13,7 @@ local lib = mods['adamant-Modpack_Lib']
 config = chalk.auto('config.lua')
 public.config = config
 
-local backup, revert = lib.createBackupSystem()
+local _, revert = lib.createBackupSystem()
 
 -- =============================================================================
 -- MODULE DEFINITION
@@ -27,6 +27,7 @@ public.definition = {
     tooltip  = "Displays RTA and load-removed timers on screen during runs.",
     default  = false,
     dataMutation = false,
+    modpackModule = true,
 }
 
 -- =============================================================================
@@ -133,7 +134,7 @@ local function CreateOverlayLine(anchorName, text, kwargs)
             Color = kwargs.color or textFormat.Color,
         })
     else
-        ScreenAnchors[anchorName] = CreateScreenObstacle({
+        ScreenAnchors[anchorName] = CreateScreenObstacle({ --luacheck: ignore 443
             Name = "BlankObstacle",
             X = x_pos, Y = y_pos,
             Group = "Combat_Menu_TraitTray_Overlay",
@@ -152,7 +153,7 @@ end
 local function DestroyAnchor(anchorName)
     if ScreenAnchors[anchorName] ~= nil then
         Destroy({ Id = ScreenAnchors[anchorName] })
-        ScreenAnchors[anchorName] = nil
+        ScreenAnchors[anchorName] = nil --luacheck: ignore 443
     end
 end
 

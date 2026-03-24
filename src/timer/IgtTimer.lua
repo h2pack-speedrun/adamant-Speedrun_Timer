@@ -9,6 +9,6 @@ function IgtTimer:new()
     return o
 end
 
-function IgtTimer:getTime()
+function IgtTimer:getTime()  --luacheck: ignore 212
     return _worldTime
 end

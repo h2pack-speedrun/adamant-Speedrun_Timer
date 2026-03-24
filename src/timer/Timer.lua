@@ -55,5 +55,5 @@ function Timer:reset()
     self.ElapsedTime = 0
 end
 
-function Timer:update() end
-function Timer:trueUp() end
+function Timer:update() end  --luacheck: ignore 212
+function Timer:trueUp() end  --luacheck: ignore 212
