@@ -14,7 +14,8 @@ globals = {
     "GetTime",
     "RtaTimer",
     "Timer",
-    "ScreenAnchors"
+    "ScreenAnchors",
+    "SpeedrunTimerInternal"
     }
 read_globals = {
     "imgui",
