@@ -1,6 +1,5 @@
 SpeedrunTimerInternal = SpeedrunTimerInternal or {}
 local internal = SpeedrunTimerInternal
-local lib = rom.mods['adamant-ModpackLib']
 
 local SpeedrunTimer = {}
 
@@ -147,7 +146,7 @@ end
 
 function internal.RegisterHooks()
     modutil.mod.Path.Wrap("StartNewRun", function(baseFunc, prevRun, args)
-        if not lib.isEnabled(public.store, public.definition.modpack) then return baseFunc(prevRun, args) end
+        if not lib.isEnabled(store, public.definition.modpack) then return baseFunc(prevRun, args) end
         if activeTimer then
             StopAndCleanup()
         end
@@ -156,7 +155,7 @@ function internal.RegisterHooks()
     end)
 
     modutil.mod.Path.Wrap("RoomEntranceMaterialize", function(baseFunc, ...)
-        if not lib.isEnabled(public.store, public.definition.modpack) then return baseFunc(...) end
+        if not lib.isEnabled(store, public.definition.modpack) then return baseFunc(...) end
         local val = baseFunc(...)
 
         if activeTimer and not activeTimer.Running then
@@ -167,7 +166,7 @@ function internal.RegisterHooks()
             updateThreadActive = true
             thread(function()
                 while activeTimer and activeTimer.Running do
-                    if not lib.isEnabled(public.store, public.definition.modpack) then
+                    if not lib.isEnabled(store, public.definition.modpack) then
                         StopAndCleanup()
                         return
                     end
@@ -184,7 +183,7 @@ function internal.RegisterHooks()
     end)
 
     modutil.mod.Path.Wrap("ChronosKillPresentation", function(baseFunc, ...)
-        if not lib.isEnabled(public.store, public.definition.modpack) then return baseFunc(...) end
+        if not lib.isEnabled(store, public.definition.modpack) then return baseFunc(...) end
         if activeTimer then
             activeTimer:stop()
         end
@@ -193,7 +192,7 @@ function internal.RegisterHooks()
 
     modutil.mod.Path.Wrap("AddTimerBlock", function(baseFunc, currRun, timerBlockName)
         local val = baseFunc(currRun, timerBlockName)
-        if lib.isEnabled(public.store, public.definition.modpack) and timerBlockName == "MapLoad"
+        if lib.isEnabled(store, public.definition.modpack) and timerBlockName == "MapLoad"
                 and activeTimer and activeTimer.Running then
 
             activeTimer.LrtTimer:processLoadEvent(true)
@@ -203,7 +202,7 @@ function internal.RegisterHooks()
 
     modutil.mod.Path.Wrap("RemoveTimerBlock", function(baseFunc, currRun, timerBlockName)
         local val = baseFunc(currRun, timerBlockName)
-        if lib.isEnabled(public.store, public.definition.modpack) and timerBlockName == "MapLoad"
+        if lib.isEnabled(store, public.definition.modpack) and timerBlockName == "MapLoad"
                 and activeTimer and activeTimer.Running then
 
             activeTimer.LrtTimer:processLoadEvent(false)

@@ -1,17 +1,11 @@
 local mods = rom.mods
 mods['SGG_Modding-ENVY'].auto()
 
----@diagnostic disable: lowercase-global
-rom = rom
-_PLUGIN = _PLUGIN
-game = rom.game
+lib = mods['adamant-ModpackLib']
 modutil = mods['SGG_Modding-ModUtil']
-chalk = mods['SGG_Modding-Chalk']
-reload = mods['SGG_Modding-ReLoad']
-local lib = mods['adamant-ModpackLib']
-
-config = chalk.auto('config.lua')
-public.config = config
+local chalk = mods['SGG_Modding-Chalk']
+local reload = mods['SGG_Modding-ReLoad']
+local config = chalk.auto('config.lua')
 
 -- =============================================================================
 -- MODULE DEFINITION
@@ -29,6 +23,7 @@ public.definition = {
 }
 
 public.store = lib.createStore(config, public.definition)
+store = public.store
 
 -- =============================================================================
 -- TIMER IMPORTS
@@ -63,5 +58,5 @@ modutil.once_loaded.game(function()
     loader.load(init, init)
 end)
 
-local uiCallback = lib.standaloneUI(public.definition, public.store)
+local uiCallback = lib.standaloneUI(public.definition, store)
 rom.gui.add_to_menu_bar(uiCallback)

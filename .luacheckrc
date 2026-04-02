@@ -15,7 +15,8 @@ globals = {
     "RtaTimer",
     "Timer",
     "ScreenAnchors",
-    "SpeedrunTimerInternal"
+    "SpeedrunTimerInternal",
+    "lib", "store"
     }
 read_globals = {
     "imgui",
@@ -30,5 +31,5 @@ read_globals = {
     "MergeTables",
     "Destroy",
     "thread",
-    "wait"
+    "wait",
     }
