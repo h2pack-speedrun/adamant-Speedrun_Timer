@@ -5,6 +5,7 @@ lib = mods['adamant-ModpackLib']
 modutil = mods['SGG_Modding-ModUtil']
 local chalk = mods['SGG_Modding-Chalk']
 local reload = mods['SGG_Modding-ReLoad']
+local dataDefaults = import("config.lua")
 local config = chalk.auto('config.lua')
 
 -- =============================================================================
@@ -15,14 +16,14 @@ public.definition = {
     id           = "SpeedrunTimer",
     name         = "Speedrun Timer",
     category     = "QoL",
-    group        = "QoL",
+    subgroup     = "QoL",
     tooltip      = "Displays RTA and load-removed timers on screen during runs.",
-    default      = false,
+    default      = dataDefaults.Enabled,
     affectsRunData = false,
     modpack      = "speedrun",
 }
 
-public.store = lib.createStore(config, public.definition)
+public.store = lib.createStore(config, public.definition, dataDefaults)
 store = public.store
 
 -- =============================================================================
