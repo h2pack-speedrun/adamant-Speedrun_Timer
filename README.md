@@ -8,8 +8,9 @@ Part of the [Speedrun modpack](https://github.com/h2pack-speedrun/speedrun-modpa
 
 Install via [r2modman](https://thunderstore.io/c/hades-ii/) or manually place in your `ReturnOfModding/plugins` folder.
 
-## Reference Docs
+## Shared Docs
 
-- [Module Authoring Guide](https://github.com/h2-modpack/adamant-ModpackLib/blob/main/MODULE_AUTHORING.md)
-- [Lib API](https://github.com/h2-modpack/adamant-ModpackLib/blob/main/API.md)
-- [Framework Guide](https://github.com/h2-modpack/adamant-ModpackFramework/blob/main/COORDINATOR_GUIDE.md)
+- [ModpackLib README.md](https://github.com/h2-modpack/adamant-ModpackLib/blob/main/README.md)
+  Module contract, storage/UI authoring, and standalone helpers.
+- [ModpackFramework README.md](https://github.com/h2-modpack/adamant-ModpackFramework/blob/main/README.md)
+  Coordinator/discovery contract, Quick Setup, and hash/profile behavior.
